@@ -1,0 +1,190 @@
+CREATE TABLE LOCATION2(loc_id INT PRIMARY KEY, City VARCHAR(5));
+
+Table created.
+
+ desc location2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ LOC_ID                                    NOT NULL NUMBER(38)
+ CITY            
+                                   VARCHAR2(5)
+CREATE TABLE departments(dept_id INT PRIMARY KEY, dept_name VARCHAR(8),loc_id INT, FOREIGN KEY(loc_id) REFERENCES LOCATION2 (loc_id));
+
+Table created.
+
+SQL> desc departments
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID                                   NOT NULL NUMBER(38)
+ DEPT_NAME                                          VARCHAR2(8)
+ LOC_ID                                             NUMBER(38)
+
+
+CREATE TABLE job2(job_id int primary key, job_title varchar(5), min_salary number(5),max_salary number(5));
+
+Table created.
+desc job2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ JOB_ID                                    NOT NULL NUMBER(38)
+ JOB_TITLE                                          VARCHAR2(5)
+ MIN_SALARY                                         NUMBER(5)
+ MAX_SALARY                                         NUMBER(5)
+
+create table employees(emp_id int primary key, emp_name varchar(8), salary number(8), job_id int,dept_id int, foreign key(job_id) references job2(job_id), foreign key(dept_id) references departments(dept_id));
+
+Table created.
+
+SQL> desc employees
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(38)
+ EMP_NAME                                           VARCHAR2(8)
+ SALARY                                             NUMBER(8)
+ JOB_ID                                             NUMBER(38)
+ DEPT_ID                                            NUMBER(38)
+
+ insert into location2 values(1, 'kochi');
+1 row created.
+ insert into location2 values(2, 'tvm');
+1 row created.
+insert into location2 values(3, 'kzh');
+1 row created.
+insert into location2 values(4, 'kollam');
+1 row created.
+insert into location2 values(5, 'kotm');
+1 row created.
+
+ select * from location2;
+
+    LOC_ID CITY
+---------- -----
+         1 kochi
+         2 tvm
+         3 kzh
+         4 kolm
+         5 kotm
+
+insert into departments values(10, 'hr',1);
+1 row created.
+SQL> insert into departments values(20, 'finance',2);
+1 row created.
+SQL> insert into departments values(30, 'it',3);
+1 row created.
+SQL> insert into departments values(40, 'hr',4);
+1 row created.
+SQL> insert into departments values(50, 'it',5);
+1 row created.
+
+SQL> select * from departments;
+
+   DEPT_ID DEPT_NAM     LOC_ID
+---------- -------- ----------
+        10 hr                1
+        20 finance           2
+        30 it                3
+        40 hr                4
+        50 it                5
+
+
+ALTER TABLE job2 MODIFY COLUMN max_salary VARCHAR(10);
+
+
+insert into job2 values(100, 'mngr',50000,100000);
+1 row created.
+SQL> insert into job2 values(101, 'dev',30000,70000);
+1 row created.
+SQL> insert into job2 values(102, 'clerk',20000,40000);
+1 row created.
+SQL> insert into job2 values(103, 'staff',25000,40000);
+1 row created.
+SQL> insert into job2 values(104, 'test',35000,60000);
+1 row created.
+
+SQL> select*from job2;
+
+    JOB_ID JOB_T MIN_SALARY MAX_SALARY
+---------- ----- ---------- ----------
+       100 mngr       50000 100000
+       101 dev        30000 70000
+       102 clerk      20000 40000
+       103 staff      25000 40000
+       104 test       35000 60000
+
+
+insert into employees values(1, 'arya',60000, 100,10);
+1 row created.
+SQL> insert into employees values(2, 'devi',40000, 101,30);
+1 row created.
+SQL> insert into employees values(3, 'athira',25000, 102,20);
+1 row created.
+SQL> insert into employees values(4, 'tini',35000, 101,40);
+1 row created.
+SQL> insert into employees values(5, 'bini',29000, 102,NULL);
+1 row created.
+
+SQL> select*from employees;
+
+    EMP_ID EMP_NAME     SALARY     JOB_ID    DEPT_ID
+---------- -------- ---------- ---------- ----------
+         1 arya          60000        100         10
+         2 devi          40000        101         30
+         3 athira        25000        102         20
+         4 tini          35000        101         40
+         5 bini          29000        102
+
+SQL>JOIN
+-----------------------------------------------------------------------------------------------------
+1, EMP NAME WITH JOB TITLES AS INNERJOIN
+
+ select e.emp_name, j.job_title from employees e inner join job2 j on e.job_id=j.job_id;
+
+EMP_NAME JOB_T
+-------- -----
+arya     mngr
+tini     dev
+devi     dev
+bini     clerk
+athira   clerk
+
+2, employees and their department names using left join
+
+select e.emp_name, d.dept_name from employees e left join departments d on e.dept_id=d.dept_id;
+
+EMP_NAME DEPT_NAM
+-------- --------
+arya     hr
+athira   finance
+devi     it
+tini     hr
+bini
+
+3,department names and any employee working  in them using right join
+
+
+SQL> select d.dept_name, e.emp_name from departments d right join employees e on e.dept_id=d.dept_id;
+
+DEPT_NAM EMP_NAME
+-------- --------
+hr       arya
+finance  athira
+it       devi
+hr       tini
+         bini
+
+
+AGGREGATE FUNCTIONS
+----------------------------------------------------------------------------------------------------
+1, total salary per department
+
+select d.dept_name, sum(e.salary) as total_salary from employees e join departments d on e.dept_id=d.dept_id GROUP BY d.dept_name;
+
+DEPT_NAM TOTAL_SALARY
+-------- ------------
+hr              95000
+finance         25000
+it              40000
+
+2, average salary per job title
+
+
