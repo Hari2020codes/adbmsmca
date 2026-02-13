@@ -1,0 +1,35 @@
+
+SQL> create table Student2(studentid number(5) primary key, studname varchar(30),age number(3),dept varchar(10));
+
+Table created.
+
+SQL> desc Student2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTID                                 NOT NULL NUMBER(5)
+ STUDNAME                                           VARCHAR2(30)
+ AGE                                                NUMBER(3)
+ DEPT                                               VARCHAR2(10)
+
+SQL> alter table Student2 add email varchar(20);
+
+Table altered.
+
+SQL> desc Student2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTID                                 NOT NULL NUMBER(5)
+ STUDNAME                                           VARCHAR2(30)
+ AGE                                                NUMBER(3)
+ DEPT                                               VARCHAR2(10)
+ EMAIL                                              VARCHAR2(20)
+
+SQL> rename Student2 to Student2_Details;
+
+Table renamed.
+
+SQL> TRUNCATE TABLE Student2_Details;
+
+Table truncated.
+
+SQL>

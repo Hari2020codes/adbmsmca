@@ -1,0 +1,94 @@
+
+SQL> set linesize 200
+SQL> set pagesize 50
+SQL> select*from Student2_Details;
+
+ STUDENTID STUDNAME                              AGE DEPT       EMAIL
+---------- ------------------------------ ---------- ---------- --------------------
+         1 Mariyam                                22 MCA        MSDJH.@jsdji
+         2 IRON MAN                               24 MCA        IRON.@jsdji
+         3 CAPTAIN AMERICA                        24 MCA        CAPTAIN.@jsdji
+         4 BLACK WIDOW                            24 MCA        BLACK.@jsdji
+         5 HAWKEYE                                24 MCA        HAWK.@jsdji
+         6 HULK                                   24 MCA        HAWK.@jsdji
+
+6 rows selected.
+
+
+
+SQL> update Student2_Details set age=25 where studentid=5;
+
+1 row updated.
+
+SQL> select*from Student2_Details;
+
+ STUDENTID STUDNAME                              AGE DEPT       EMAIL
+---------- ------------------------------ ---------- ---------- --------------------
+         1 Mariyam                                22 MCA        MSDJH.@jsdji
+         2 IRON MAN                               24 MCA        IRON.@jsdji
+         3 CAPTAIN AMERICA                        24 MCA        CAPTAIN.@jsdji
+         4 BLACK WIDOW                            24 MCA        BLACK.@jsdji
+         5 HAWKEYE                                25 MCA        HAWK.@jsdji
+         6 HULK                                   24 MCA        HAWK.@jsdji
+
+6 rows selected.
+
+SQL> delete from Student2_Details where studentid=1;
+
+1 row deleted.
+
+SQL> select*from Student2_Details;
+
+ STUDENTID STUDNAME                              AGE DEPT       EMAIL
+---------- ------------------------------ ---------- ---------- --------------------
+         2 IRON MAN                               24 MCA        IRON.@jsdji
+         3 CAPTAIN AMERICA                        24 MCA        CAPTAIN.@jsdji
+         4 BLACK WIDOW                            24 MCA        BLACK.@jsdji
+         5 HAWKEYE                                25 MCA        HAWK.@jsdji
+         6 HULK                                   24 MCA        HAWK.@jsdji
+
+
+
+
+SQL> insert into Student2_Details values(1,'thor',30,'mca','thor@gg');
+
+1 row created.
+
+SQL> select*from Student2_Details;
+
+ STUDENTID STUDNAME                              AGE DEPT       EMAIL
+---------- ------------------------------ ---------- ---------- --------------------
+         2 IRON MAN                               24 MCA        IRON.@jsdji
+         3 CAPTAIN AMERICA                        24 MCA        CAPTAIN.@jsdji
+         4 BLACK WIDOW                            24 MCA        BLACK.@jsdji
+         5 HAWKEYE                                25 MCA        HAWK.@jsdji
+         6 HULK                                   24 MCA        HAWK.@jsdji
+         1 thor                                   30 mca        thor@gg
+
+6 rows selected.
+
+
+
+
+SQL> --------------------------------------------------------------------------------
+SQL> create table customer(customerid int primary key, name varchar(10),city varchar(10));
+
+Table created.
+
+SQL> desc customer
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ CUSTOMERID                                                                                                        NOT NULL NUMBER(38)
+ NAME
+            VARCHAR2(10)
+ CITY
+            VARCHAR2(10)
+
+SQL> set linesize 200
+SQL> set pagesize 50
+SQL> select*from customer;
+
+no rows selected
+
+SQL> desc customer
+ Name
