@@ -1,0 +1,22 @@
+declare 
+n number := &n;
+c number := 0;
+i number ;
+begin
+ if n<2 then
+  dbms_output.put_line(n || ' is not prime');
+ else 
+   FOR i IN 2..n-1 LOOP
+     if MOD(n,i)=0 then
+       c := 1;
+       EXIT;
+     end if;
+   END LOOP;
+  if c=0 then 
+    dbms_output.put_line(n || ' is prime');
+  else
+    dbms_output.put_line(n || ' is not prime');
+  end if;
+end if;
+end;
+
