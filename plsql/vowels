@@ -1,0 +1,9 @@
+declare
+x char(1) :='&x';
+begin
+if x='a' or x='e' or x='i' or x='u' then
+  dbms_output.put_line(x||' is a vowel');
+else 
+  dbms_output.put_line(x||' is not a vowel');
+end if;
+end;
