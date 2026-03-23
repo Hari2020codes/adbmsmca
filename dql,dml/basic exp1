@@ -1,0 +1,125 @@
+ create table StudentIn(id number(5), name varchar(20), age number(3), city varchar(30));
+
+Table created.
+
+SQL> desc studentin
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(5)
+ NAME                                               VARCHAR2(20)
+ AGE                                                NUMBER(3)
+ CITY                                               VARCHAR2(30)
+
+SQL> alter table studentin add dob date;
+
+Table altered.
+
+SQL> desc studentin
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(5)
+ NAME                                               VARCHAR2(20)
+ AGE                                                NUMBER(3)
+ CITY                                               VARCHAR2(30)
+ DOB                                                DATE
+
+SQL> alter table studentin modify age int;
+
+Table altered.
+
+SQL> desc studentin
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(5)
+ NAME                                               VARCHAR2(20)
+ AGE                                                NUMBER(38)
+ CITY                                               VARCHAR2(30)
+ DOB                                                DATE
+
+SQL> alter table studentin drop column city;
+
+Table altered.
+
+SQL> desc studentin
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(5)
+ NAME                                               VARCHAR2(20)
+ AGE                                                NUMBER(38)
+ DOB                                                DATE
+
+SQL> create table customerin(cust_id number primary key, address varchar(10), city varchar(10), ph_no number);
+
+Table created.
+
+SQL> desc customerin
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_ID                                   NOT NULL NUMBER
+ ADDRESS                                            VARCHAR2(10)
+ CITY                                               VARCHAR2(10)
+ PH_NO                                              NUMBER
+
+SQL> alter table customerin add name varchar(10);
+
+Table altered.
+
+SQL> desc customerin
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_ID                                   NOT NULL NUMBER
+ ADDRESS                                            VARCHAR2(10)
+ CITY                                               VARCHAR2(10)
+ PH_NO                                              NUMBER
+ NAME                                               VARCHAR2(10)
+
+SQL> create table productin(p_id number primary key,pname varchar(10),price number default 0);
+
+Table created.
+
+SQL> desc productin
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ P_ID                                      NOT NULL NUMBER
+ PNAME                                              VARCHAR2(10)
+ PRICE                                              NUMBER
+
+SQL> create table invoice_master(inv_id int, cust_id int, inv_date date, constraint fk_cust_id foreign key(cust_id) references customerin(cust_id));
+
+Table created.
+
+SQL> desc invoice_master;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ INV_ID                                             NUMBER(38)
+ CUST_ID                                            NUMBER(38)
+ INV_DATE                                           DATE
+
+SQL> CREATE TABLE invoice_item (
+  2    inv_id NUMBER,
+  3    p_id NUMBER,
+  4    quantity NUMBER,
+  5    CONSTRAINT fk_inv FOREIGN KEY (inv_id)
+  6      REFERENCES invoice_master(inv_id),
+  7    CONSTRAINT fk_prod FOREIGN KEY (p_id)
+  8      REFERENCES productin(p_id)
+  9  );
+
+Table created.
+
+SQL> desc invoice_item;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ INV_ID                                             NUMBER
+ P_ID                                               NUMBER
+ QUANTITY                                           NUMBER
+
+SQL> SELECT * FROM tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+SYSCATALOG                     SYNONYM
+CATALOG                        SYNONYM
+TAB                            SYNONYM
+COL                            SYNONYM
+TABQUOTAS                      SYNONYM
