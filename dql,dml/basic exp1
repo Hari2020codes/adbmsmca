@@ -123,3 +123,10 @@ CATALOG                        SYNONYM
 TAB                            SYNONYM
 COL                            SYNONYM
 TABQUOTAS                      SYNONYM
+
+
+Drop table with primary key or foreign key set
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+DROP TABLE TABLENAME CASCADE CONSTRAINTS;
+
+
