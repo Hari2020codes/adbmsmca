@@ -1,0 +1,111 @@
+
+SQL> desc customerin
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_ID                                   NOT NULL NUMBER
+ ADDRESS                                            VARCHAR2(10)
+ CITY                                               VARCHAR2(10)
+ PH_NO                                              NUMBER
+ NAME                                               VARCHAR2(10)
+
+SQL> insert into customerin values(1,'ekm','elat',8945678976,'anu');
+
+1 row created.
+
+SQL> SELECT * FROM customerin;
+
+   CUST_ID ADDRESS    CITY            PH_NO NAME
+---------- ---------- ---------- ---------- ----------
+         1 ekm        elat       8945678976 anu
+
+SQL> insert into customerin values(2,'tvm','abc',8945600976,'abu');
+
+1 row created.
+
+SQL> insert into customerin values(3,'tvm','rose',null,'sreehari');
+
+1 row created.
+
+SQL> insert into customerin values(4,'tvm','abcd',8945654511,'veena');
+
+1 row created.
+
+SQL> insert into customerin values(5,'tvm','white',9945654511,'binu');
+
+1 row created.
+
+SQL> insert into customerin values(6,'calicut','rose v',null,'anju');
+
+1 row created.
+
+SQL> SELECT * FROM customerin;
+
+   CUST_ID city    address           PH_NO NAME
+---------- ---------- ---------- ---------- ----------
+         1 ekm        elat       8945678976 anu
+         2 tvm        abc        8945600976 abu
+         3 tvm        rose                  sreehari
+         4 tvm        abcd       8945654511 veena
+         5 tvm        white      9945654511 binu
+         6 calicut    rose v                anju
+
+6 rows selected.
+
+SQL> desc productin
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ P_ID                                      NOT NULL NUMBER
+ PNAME                                              VARCHAR2(10)
+ PRICE                                              NUMBER
+
+SQL> insert into productin values(101,'pen',10);
+
+1 row created.
+
+SQL> SELECT * FROM productin;
+
+      P_ID PNAME           PRICE
+---------- ---------- ----------
+       101 pen                10
+
+SQL> insert into productin values(101,'soap',65);
+insert into productin values(101,'soap',65)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C004039) violated
+
+
+SQL> insert into productin values(102,'soap',65);
+
+1 row created.
+
+SQL> insert into productin values(103,'pencil',10);
+
+1 row created.
+
+SQL> insert into productin values(104,'powder',100);
+
+1 row created.
+
+SQL> insert into productin values(105,'shampoo',110);
+
+1 row created.
+
+SQL> insert into productin values(106,'handwash',60);
+
+1 row created.
+
+SQL> SELECT * FROM productin;
+
+      P_ID PNAME           PRICE
+---------- ---------- ----------
+       101 pen                10
+       102 soap               65
+       103 pencil             10
+       104 powder            100
+       105 shampoo           110
+       106 handwash           60
+
+6 rows selected.
+
+SQL>
