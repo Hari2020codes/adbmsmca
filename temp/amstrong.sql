@@ -1,0 +1,19 @@
+declare 
+n number := &n;
+sums number := 0;
+rem number;
+temp number := n;
+
+begin 
+while n>0 loop
+ rem := MOD(n,10);
+ sums := sums+(rem*rem*rem);
+ n := TRUNC(n/10);
+end loop;
+
+if temp=sums then
+  dbms_output.put_line(temp||' is amstrong');
+else
+    dbms_output.put_line(temp||' is not amstrong');
+end if;
+end;
