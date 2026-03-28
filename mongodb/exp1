@@ -1,0 +1,98 @@
+use customerdb
+switched to db customerdb
+db.createCollection("customer")
+db.insertOne({name:"Akhila",city:"kochi",age:25,phone:"9876543210"})
+db.insertMany([{name:"kochu",city:"kochi",age:25,phone:"9876543210"},{name:"achu",city:"kochi",age:25,phone:"9876543210"}])
+
+
+customerdb> db.customer.find()
+[  
+  {
+    _id: ObjectId('69c60eef9911dc8f103682d1'),
+    name: 'Akhila',
+    city: 'kochi',
+    age: 25,
+    phone: '9876543210'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d2'),
+    name: 'kochu',
+    city: 'tvm',
+    age: 28,
+    phone: '9123456789'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d3'),
+    name: 'aswin',
+    city: 'kollam',
+    age: 21,
+    phone: '9988776655'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d4'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 32,
+    phone: '9998887776'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d5'),
+    name: 'anu',
+    city: 'kottayam',
+    age: 24,
+    phone: '9090909090'
+  }
+]
+
+2)
+customerdb> db.customer.updateOne({name:"kannan"},{$set:{age:29}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+customerdb> db.customer.find({name:'kannan'})
+[
+  {
+    _id: ObjectId('69c610c39911dc8f103682d4'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 29,
+    phone: '9998887776'
+  }
+]
+customerdb> db.customer.deleteOne({name:'aswin'})
+{ acknowledged: true, deletedCount: 1 }
+customerdb> db.customer.find()
+[
+  {
+    _id: ObjectId('69c60eef9911dc8f103682d1'),
+    name: 'Akhila',
+    city: 'kochi',
+    age: 25,
+    phone: '9876543210'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d2'),
+    name: 'kochu',
+    city: 'tvm',
+    age: 28,
+    phone: '9123456789'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d4'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 29,
+    phone: '9998887776'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d5'),
+    name: 'anu',
+    city: 'kottayam',
+    age: 24,
+    phone: '9090909090'
+  }
+]
