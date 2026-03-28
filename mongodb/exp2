@@ -37,3 +37,38 @@ customerdb> db.customer.find({age:{$lt:26}})
     phone: '9090909090'
   }
 ]
+
+
+3) display all customers with age>=29
+customerdb> db.customer.find({age:{$gte:29}})
+[  
+  {
+    _id: ObjectId('69c610c39911dc8f103682d4'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 29,
+    phone: '9998887776'
+  }
+]
+
+
+4) customers who not live in kochi
+customerdb> db.customer.find({city:{$ne:'kochi'}})
+[  
+  {
+    _id: ObjectId('69c610c39911dc8f103682d2'),
+    name: 'kochu',
+    city: 'tvm',
+    age: 28,
+    phone: '9123456789'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d5'),
+    name: 'anu',
+    city: 'kottayam',
+    age: 24,
+    phone: '9090909090'
+  }
+]
+
+ 
