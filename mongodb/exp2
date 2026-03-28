@@ -1,0 +1,39 @@
+1) display customers in kochi or age less than 24
+
+customerdb> db.customer.find({$or:[{city:"kochi"},{age:{$lt:24}}]})
+[  
+  {
+    _id: ObjectId('69c60eef9911dc8f103682d1'),
+    name: 'Akhila',
+    city: 'kochi',
+    age: 25,
+    phone: '9876543210'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d4'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 29,
+    phone: '9998887776'
+  }
+]
+
+2)display customers with age less than 26
+
+customerdb> db.customer.find({age:{$lt:26}})
+[  
+  {
+    _id: ObjectId('69c60eef9911dc8f103682d1'),
+    name: 'Akhila',
+    city: 'kochi',
+    age: 25,
+    phone: '9876543210'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d5'),
+    name: 'anu',
+    city: 'kottayam',
+    age: 24,
+    phone: '9090909090'
+  }
+]
