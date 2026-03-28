@@ -1,0 +1,45 @@
+1)display all customers in asscending order
+
+db.customer.find().sort({name:1}).pretty()
+[  
+  {
+    _id: ObjectId('69c60eef9911dc8f103682d1'),
+    name: 'Akhila',
+    city: 'kochi',
+    age: 25,
+    phone: '9876543210'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d5'),
+    name: 'anu',
+    city: 'kottayam',
+    age: 24,
+    phone: '9090909090'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d4'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 29,
+    phone: '9998887776'
+  },
+  {
+    _id: ObjectId('69c610c39911dc8f103682d2'),
+    name: 'kochu',
+    city: 'tvm',
+    age: 28,
+    phone: '9123456789'
+  }
+]
+
+2) count number of city in each customer
+db.customer.aggregate([{$group:{_id:"city"}},{$count:"total_cities"}])
+[ { total_cities: 1 } ]
+
+3)count number of customers in each city
+ db.customer.aggregate([{$group:{_id:"city",total:{$sum:1}}}])
+[ { _id: 'city', total: 4 } ]
+
+4)find minimum and maximum (age) on customer collection
+ db.customer.aggregate([{$group:{_id:"",minage:{$min:"$age"},maxage:{$max:"$age"}}}])
+[ { _id: '', minage: 24, maxage: 29 } ]
