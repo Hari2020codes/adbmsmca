@@ -22,3 +22,22 @@ student> db.dropUser("reportUser",{w:"majority",wtimeout:5000})
 
 5)
 
+5)grant appAdmin readWrite role on products database and read role on student database
+ db.grantRolesToUser("appAdmin",["readWrite",{role:"read",db:"student"}],{w:"majority",wtimeout:4000})
+{ ok: 1 }
+
+6)remove user's roles: read and readWrite role on  student database
+ db.revokeRolesFromUser("appAdmin",[{role:"read",db:"student"},"readWrite"],{w:"majority"})
+{ ok: 1 }
+
+
+7)display details of user appAdmin
+ db.getUser("appAdmin")
+{
+  _id: 'student.appAdmin',
+  userId: UUID('cbec60bb-9116-4872-bf4e-7a087dc68d59'),
+  user: 'appAdmin',
+  db: 'student',
+  roles: [ { role: 'readWrite', db: 'config' } ],
+  mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+}
