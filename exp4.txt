@@ -188,3 +188,35 @@ it              40000
 2, average salary per job title
 
 
+SQL OPERATIONS:___________________________
+ select emp_name from employees where emp_name like 'A%';
+
+no rows selected
+
+SQL>  select emp_name from employees where emp_name like 'a%';
+
+EMP_NAME
+--------
+arya
+athira
+
+18)EMPLOYEES IN HR OR FINANCE 
+
+ select emp_name from employees  where dept_id IN (10,20);
+
+EMP_NAME
+--------
+arya
+athira
+
+19) EMPLOYEES NOT WORKING IN IT 
+
+SQL> select emp_name from employees  where dept_id NOT IN (30);
+
+EMP_NAME
+--------
+arya
+athira
+tini
+
+
